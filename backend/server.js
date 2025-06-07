@@ -67,6 +67,11 @@ const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running :${PORT}`);
 });
 
+const distPath = path.resolve(__dirname,"../frontend/dist");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(distPath, "index.html"));
+});
+
 // Socket.IO setup
 const { Server } = require("socket.io");
 const io = new Server(server, {
