@@ -6,17 +6,8 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-// const corsOptions = {
-// 	origin: process.env.FRONTEND_URL,
-// 	methods: ["GET", "POST", "DELETE"],
-// 	allowedHeaders: ["Content-Type", "Authorization"],
-// 	credentials: true,
-// };
-// console.log('Allowed CORS Origin:', process.env.FRONTEND_URL);
-
-// app.use(cors(corsOptions));
 const corsOptions = {
-  origin: 'http://172.27.36.244:5173',
+  origin: process.env.FRONTEND_URL,
   methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
@@ -36,7 +27,7 @@ const messageRouter = require("./routes/message");
 
 // Connect to Database
 main()
-	.then(() => console.log("Database Connection established"))
+	.then(() => console.log("Database Connection established",process.env.FRONTEND_URL))
 	.catch((err) => console.log(err));
 
 async function main() {
@@ -75,7 +66,6 @@ app.use((err, req, res, next) => {
 const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running :${PORT}`);
 });
-
 
 // Socket.IO setup
 const { Server } = require("socket.io");
