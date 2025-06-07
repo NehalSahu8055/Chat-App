@@ -10,7 +10,7 @@
 - Frontend Server
     - Go to `frontend` directory and open a terminal 
     - Type `npm run dev` to run server
-    - Running at http://chat-app-wine-kappa-24.vercel.app:5173/
+    - Running at http://localhost:5173/
     
 
 - Dummy IDs:
