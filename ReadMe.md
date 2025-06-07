@@ -1,4 +1,8 @@
-**Steps to run the project**
+# Chat App
+- Live Preview : https://chat-app-nehal.netlify.app/
+
+**Steps to run the project locally**
+
 - Backend Server
     - Go to `backend` directory and open a terminal 
     - Type `npm start` to run server
