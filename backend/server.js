@@ -6,14 +6,24 @@ const mongoose = require("mongoose");
 
 const app = express();
 
+// const corsOptions = {
+// 	origin: process.env.FRONTEND_URL,
+// 	methods: ["GET", "POST", "DELETE"],
+// 	allowedHeaders: ["Content-Type", "Authorization"],
+// 	credentials: true,
+// };
+// console.log('Allowed CORS Origin:', process.env.FRONTEND_URL);
+
+// app.use(cors(corsOptions));
 const corsOptions = {
-	origin: process.env.FRONTEND_URL,
-	methods: ["GET", "POST", "DELETE"],
-	allowedHeaders: ["Content-Type", "Authorization"],
-	credentials: true,
+  origin: 'http://172.27.36.244:5173',
+  methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const PORT = process.env.PORT || 3000;
@@ -59,9 +69,13 @@ app.use((err, req, res, next) => {
 });
 
 // Start the server
-const server = app.listen(PORT, async () => {
-	console.log(`Server listening on ${PORT}`);
+// const server = app.listen(PORT, async () => {
+// 	console.log(`Server listening on ${PORT}`);
+// });
+const server = app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running :${PORT}`);
 });
+
 
 // Socket.IO setup
 const { Server } = require("socket.io");
